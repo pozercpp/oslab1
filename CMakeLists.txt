@@ -15,7 +15,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall /WX /fsanitize=address /Zi")
 endif ()
 
-add_library(os_lib src/os.cpp)
+add_library(os_lib src/pipe.cpp)
 target_include_directories(os_lib PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 add_executable(parent src/parent.cpp)
