@@ -14,12 +14,12 @@ int main() {
     pid_t pid = ProcessCreate();
     if (!pid) {
         PipeClose(pipe_to_child[1]);
-        dup2(pipe_to_child[0], 0);
+        PipeRedirect(pipe_to_child[0], 0);
         PipeClose(pipe_to_child[0]);
         PipeClose(pipe_from_child[0]);
-        dup2(pipe_from_child[1], 1);
-        PipeClose(pipe_from_child[1]);  
-        execl("./child", "child", NULL);
+        PipeRedirect(pipe_from_child[1], 1);
+        PipeClose(pipe_from_child[1]);
+        ProcessExecute("./child", "child");
     }
     PipeClose(pipe_to_child[0]);
     PipeClose(pipe_from_child[1]);
